@@ -52,22 +52,22 @@ def search(request):
     if 'model'  in request.GET:
         model = request.GET['model']
         if model:
-            cars = cars.filter(model__icontains=model)
+            cars = cars.filter(model__iexact=model)
 
     if 'city'  in request.GET:
             city = request.GET['city']
             if city:
-                cars = cars.filter(city__icontains=city)
+                cars = cars.filter(city__iexact=city)
 
     if 'year'  in request.GET:
         year = request.GET['year']
         if year:
-            cars = cars.filter(year__icontains=year)
+            cars = cars.filter(year__iexact=year)
 
     if 'body_style'  in request.GET:
         body_style = request.GET['body_style']
         if body_style:
-            cars = cars.filter(body_style__icontains=body_style)
+            cars = cars.filter(body_style__iexact=body_style)
     
     if 'min_price' in request.GET:
         min_price = request.GET['min_price']
@@ -83,6 +83,6 @@ def search(request):
         'city_search': city_search,
         'year_search': year_search,
         'body_style_search': body_style_search,
-        'transmission_search': transmission_search,        
+        'transmission_search': transmission_search,
     }
     return render(request, template, date)
